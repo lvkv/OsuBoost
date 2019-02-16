@@ -23,8 +23,6 @@ public class Point implements Runnable{
                 release();
                 isHeld = false;
             }
-            else
-                return; // Else, continue sustaining
         }
         else if (current_color.equals(Constants.NOTE)){  // If we see a single note, hit the key
             press();
