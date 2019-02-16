@@ -10,13 +10,16 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
+
 public class Gui extends Application {
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws AWTException{
+        OsuBoost bot = new OsuBoost();
         primaryStage.setTitle(Constants.APP_NAME);
 
         GridPane gridPane = new GridPane();
@@ -46,10 +49,18 @@ public class Gui extends Application {
         gridPane.add(applyButton, 0, 2);
 
         Button startButton = new Button("Start");
-        gridPane.add(startButton,0,3);
+        startButton.setOnAction((event) -> {
+            try {
+                bot.start();
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
+        });
+        gridPane.add(startButton,1,2);
 
         Button stopButton = new Button("Stop");
-        gridPane.add(stopButton,0,4);
+        stopButton.setOnAction((event) -> bot.stop());
+        gridPane.add(stopButton,2,2);
 
         primaryStage.setScene(new Scene(gridPane, 300, 250));
         primaryStage.show();
