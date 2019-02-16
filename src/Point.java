@@ -27,7 +27,7 @@ public class Point implements Runnable {
             press();
 
             try {
-                Thread.sleep(22); // We've found that waiting 22ms is the ~optimal wait time before release
+                Thread.sleep(30); // We've found that waiting 30ms is the ~optimal wait time before release
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

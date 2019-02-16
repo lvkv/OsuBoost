@@ -13,9 +13,10 @@ public class OsuBoost {
     boolean running = false; // osu is running
     ScheduledExecutorService executor;
 
-    public OsuBoost (){}
+    public OsuBoost() {
+    }
 
-    public void apply (int resolution, int keys) {
+    public void apply(int resolution, int keys) {
         if (running)
             stop();
 
@@ -44,8 +45,9 @@ public class OsuBoost {
         if (!running) {
             executor = Executors.newScheduledThreadPool(keys);
 
-            for (int i = 0; i <= keys - 1; i++)
-                executor.scheduleAtFixedRate(new Point(x_start + x_gap * i, y_pos, keyCodes[i]), 0, 1, TimeUnit.MILLISECONDS);
+            for (int i = 0; i < keys; i++)
+                executor.scheduleAtFixedRate(new Point(x_start + x_gap * i, y_pos, keyCodes[i]), 0, 8, TimeUnit.MILLISECONDS);
+
             running = true;
         }
     }
