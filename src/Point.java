@@ -4,8 +4,8 @@ public class Point implements Runnable{
     private Robot robot; // Handles reading screen and user input
     private int x; // x position of pixel
     private int y; // y position of pixel
-    private int keyCode;
-    private boolean isHeld;
+    private int keyCode; // keyCode representing key to be pressed
+    private boolean isHeld; // "are we holding down a note right now"?
 
 
     public Point(int x, int y, int keyCode) throws AWTException {
@@ -23,8 +23,6 @@ public class Point implements Runnable{
                 release();
                 isHeld = false;
             }
-            else
-                return; // Else, continue sustaining
         }
         else if (current_color.equals(Constants.NOTE)){  // If we see a single note, hit the key
             press();
