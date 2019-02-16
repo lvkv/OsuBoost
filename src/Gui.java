@@ -7,9 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.awt.*;
@@ -21,8 +18,9 @@ public class Gui extends Application {
     private Button applyButton, startButton, stopButton;
     private HBox row_heading, row_resolution, row_keys, button_row;
     private Label label_resolution, label_keys;
+    private Image logo, deco_left, deco_right;
+    private ImageView logoImage, heading_left, heading_right;
     private VBox base, root;
-    private Text scenetitle;
 
     public static void main(String[] args) {
         launch(args);
@@ -38,12 +36,12 @@ public class Gui extends Application {
 
         // Heading
         row_heading = new HBox();
-        Image logo = new Image(new FileInputStream("src/logo.png"));
-        Image deco_left = new Image(new FileInputStream("src/heading_left.png"));
-        Image deco_right = new Image(new FileInputStream("src/heading_right.png"));
-        ImageView logoImage = new ImageView(logo);
-        ImageView heading_left = new ImageView(deco_left);
-        ImageView heading_right = new ImageView(deco_right);
+        logo = new Image(new FileInputStream("src/logo.png"));
+        deco_left = new Image(new FileInputStream("src/heading_left.png"));
+        deco_right = new Image(new FileInputStream("src/heading_right.png"));
+        logoImage = new ImageView(logo);
+        heading_left = new ImageView(deco_left);
+        heading_right = new ImageView(deco_right);
         logoImage.setFitHeight(100);
         logoImage.setFitWidth(100);
         heading_left.setFitHeight(100);
@@ -58,7 +56,7 @@ public class Gui extends Application {
         row_resolution = new HBox();
         label_resolution = new Label(Constants.RESOLUTION_TEXT);
         label_resolution.setStyle(Constants.BOLD_STYLE);;
-        row_resolution.setPadding(new Insets(25, 0, 5, 0));
+        row_resolution.setPadding(new Insets(45, 0, 5, 0));
 
         // Resolution dropdown
         final ComboBox resolutionComboBox = new ComboBox();
@@ -71,7 +69,7 @@ public class Gui extends Application {
         row_keys = new HBox();
         label_keys = new Label(Constants.KEYS_TEXT);
         label_keys.setStyle(Constants.BOLD_STYLE);
-        row_keys.setPadding(new Insets(5, 0, 75, 0));
+        row_keys.setPadding(new Insets(5, 0, 55, 0));
 
         // Keys dropdown
         final ComboBox keyComboBox = new ComboBox();
@@ -111,6 +109,7 @@ public class Gui extends Application {
         root.getChildren().addAll(row_resolution, row_keys, button_row);
         primaryStage.setScene(new Scene(base, 300, 300));
         primaryStage.getIcons().add(new Image("logo.png"));
+//        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

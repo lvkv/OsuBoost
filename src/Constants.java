@@ -13,8 +13,8 @@ public final class Constants {
 
     // GUI
     public static final String TITLE_FONT = "Tahoma";
-    public static final String RESOLUTION_TEXT = "Resolution:\t";
-    public static final String KEYS_TEXT = "\t  Keys:\t";
+    public static final String RESOLUTION_TEXT = "\tResolution:\t";
+    public static final String KEYS_TEXT = "\t\t  Keys:\t";
     public static final String APPLY_TEXT = "✔ Apply";
     public static final String START_TEXT = "⏩ Start";
     public static final String STOP_TEXT = "■ Stop";
