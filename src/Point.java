@@ -1,7 +1,6 @@
 import java.awt.*;
-import java.util.logging.Logger;
 
-public class Point implements Runnable{
+public class Point implements Runnable {
     private Robot robot; // Handles reading screen and user input
     private int x; // x position of pixel
     private int y; // y position of pixel
@@ -19,22 +18,27 @@ public class Point implements Runnable{
     @Override
     public void run() {
         Color current_color = getColor();
+
+//        if (!current_color.equals(Color.WHITE) && !current_color.equals(Color.BLACK))
+//            System.out.println(keyCode + " " + current_color);
+
         if (isHeld) { // If we're sustained
             if (current_color.equals(Color.BLACK)) { // Black background means stop sustaining
                 release();
                 isHeld = false;
-                System.out.println(keyCode + " End sustain");
             }
-        }
-        else if (current_color.equals(Constants.NOTE)){  // If we see a single note, hit the key
+        } else if (current_color.equals(Constants.NOTE)) {  // If we see a single note, hit the key
             press();
+
+            try {
+                Thread.sleep(22);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             release();
-            System.out.println(keyCode + " Hit key");
-        }
-        else if (current_color.equals(Constants.NOTE_HOLD)){ // If we see a sustained note, press the key without releasing
+        } else if (current_color.equals(Constants.NOTE_HOLD)) { // If we see a sustained note, press the key without releasing
             press();
             isHeld = true;
-            System.out.println(keyCode + " Begin sustain");
         }
     }
 

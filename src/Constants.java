@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 
 public final class Constants {
 
