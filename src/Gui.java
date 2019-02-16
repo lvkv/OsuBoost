@@ -1,14 +1,17 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 public class Gui extends Application {
     public static void main(String[] args) {
@@ -16,20 +19,23 @@ public class Gui extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws AWTException{
+        OsuBoost bot = new OsuBoost();
         primaryStage.setTitle(Constants.APP_NAME);
 
-        GridPane gridPane = new GridPane();
-        gridPane.setPadding(new Insets(25, 25, 25, 25));
+        VBox root = new VBox();
+        root.setPadding(new Insets(25, 25, 25, 25));
 
         // Title
         Text scenetitle = new Text(Constants.APP_NAME);
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        gridPane.add(scenetitle, 0,0, 2, 1);
+        root.getChildren().add(scenetitle);
 
         // Resolution Label
+        HBox row_resolution = new HBox();
         Label label_resolution = new Label("Resolution:\t");
-        gridPane.add(label_resolution, 0, 1);
+        row_resolution.setPadding(new Insets(5, 0, 5, 0));
+        row_resolution.getChildren().add(label_resolution);
 
         // Resolution dropdown
         final ComboBox resolutionComboBox = new ComboBox();
@@ -40,18 +46,43 @@ public class Gui extends Application {
                 "1280 x 720"
         );
         resolutionComboBox.getSelectionModel().selectFirst();
-        gridPane.add(resolutionComboBox, 1,1);
+        row_resolution.getChildren().add(resolutionComboBox);
+        root.getChildren().add(row_resolution);
 
+        // Mania Keys radio button
+        HBox radio_row = new HBox();
+        final ToggleGroup group = new ToggleGroup();
+        RadioButton rb1 = new RadioButton("4 Key");
+        rb1.setToggleGroup(group);
+        rb1.setSelected(true);
+        rb1.setPadding(new Insets(0, 25, 100, 0));
+        radio_row.getChildren().add(rb1);
+        RadioButton rb2 = new RadioButton("7 Key");
+        rb2.setToggleGroup(group);
+        radio_row.getChildren().add(rb2);
+        root.getChildren().add(radio_row);
+
+        // Buttons row
+        HBox button_row = new HBox();
         Button applyButton = new Button("Apply");
-        gridPane.add(applyButton, 0, 2);
+        button_row.getChildren().add(applyButton);
 
         Button startButton = new Button("Start");
-        gridPane.add(startButton,0,3);
+        startButton.setOnAction((event) -> {
+            try {
+                bot.start();
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
+        });
+        button_row.getChildren().add(startButton);
 
         Button stopButton = new Button("Stop");
-        gridPane.add(stopButton,0,4);
+        stopButton.setOnAction((event) -> bot.stop());
+        button_row.getChildren().add(stopButton);
+        root.getChildren().add(button_row);
 
-        primaryStage.setScene(new Scene(gridPane, 300, 250));
+        primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
     }
 }
