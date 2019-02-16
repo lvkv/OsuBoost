@@ -22,7 +22,7 @@ public class OsuBoost {
 
         this.keys = keys;
 
-        if (keys == 4) {
+        if (keys == 4 || keys == 5) {
             x_start = 500;
             x_gap = 120;
         } else if (keys == 7) {
@@ -36,6 +36,8 @@ public class OsuBoost {
 
         if (keys == 4)
             keyCodes = new int[]{KeyEvent.VK_D, KeyEvent.VK_F, KeyEvent.VK_J, KeyEvent.VK_K};
+        else if (keys == 5)
+            keyCodes = new int[]{KeyEvent.VK_D, KeyEvent.VK_F, KeyEvent.VK_SPACE, KeyEvent.VK_J, KeyEvent.VK_K};
         else if (keys == 7)
             keyCodes = new int[]{KeyEvent.VK_S, KeyEvent.VK_D, KeyEvent.VK_F, KeyEvent.VK_SPACE, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L};
 
