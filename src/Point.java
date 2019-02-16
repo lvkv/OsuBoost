@@ -19,6 +19,10 @@ public class Point {
         return y;
     }
 
+    public void track() {
+
+    }
+
     public Color getColor() {
         return robot.getPixelColor(this.x, this.y);
     }
