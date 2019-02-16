@@ -12,14 +12,16 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.util.HashMap;
 
 public class Gui extends Application {
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws AWTException{
+    public void start(Stage primaryStage) {
         OsuBoost bot = new OsuBoost();
         primaryStage.setTitle(Constants.APP_NAME);
 
@@ -39,32 +41,28 @@ public class Gui extends Application {
 
         // Resolution dropdown
         final ComboBox resolutionComboBox = new ComboBox();
-        resolutionComboBox.getItems().addAll(
-                "1920 x 1080",
-                "3840 x 2160",
-                "2560 x 1440",
-                "1280 x 720"
-        );
+        resolutionComboBox.getItems().addAll(Constants.RESOLUTIONS.keySet());
         resolutionComboBox.getSelectionModel().selectFirst();
         row_resolution.getChildren().add(resolutionComboBox);
         root.getChildren().add(row_resolution);
 
-        // Mania Keys radio button
-        HBox radio_row = new HBox();
-        final ToggleGroup group = new ToggleGroup();
-        RadioButton rb1 = new RadioButton("4 Key");
-        rb1.setToggleGroup(group);
-        rb1.setSelected(true);
-        rb1.setPadding(new Insets(0, 25, 100, 0));
-        radio_row.getChildren().add(rb1);
-        RadioButton rb2 = new RadioButton("7 Key");
-        rb2.setToggleGroup(group);
-        radio_row.getChildren().add(rb2);
-        root.getChildren().add(radio_row);
+        // Keys Label
+        HBox row_keys = new HBox();
+        Label label_keys = new Label("Keys:\t\t");
+        row_keys.setPadding(new Insets(5, 0, 100, 0));
+        row_keys.getChildren().add(label_keys);
+
+        // Keys dropdown
+        final ComboBox keyComboBox = new ComboBox();
+        keyComboBox.getItems().addAll(Constants.MANIA_KEYS.keySet());
+        keyComboBox.getSelectionModel().selectFirst();
+        row_keys.getChildren().add(keyComboBox);
+        root.getChildren().add(row_keys);
 
         // Buttons row
         HBox button_row = new HBox();
         Button applyButton = new Button("Apply");
+        applyButton.setOnAction((event) -> bot.apply(Constants.RESOLUTIONS.get(resolutionComboBox.getValue()), Constants.MANIA_KEYS.get(keyComboBox.getValue())));
         button_row.getChildren().add(applyButton);
 
         Button startButton = new Button("Start");

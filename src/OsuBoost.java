@@ -13,7 +13,7 @@ public class OsuBoost {
     boolean running = false; // osu is running
     ScheduledExecutorService executor;
 
-    public void apply(int resolution, int keys) {
+    public void apply (int resolution, int keys) {
         if (running)
             stop();
 
