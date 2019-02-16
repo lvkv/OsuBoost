@@ -18,10 +18,6 @@ public class Point implements Runnable {
     @Override
     public void run() {
         Color current_color = getColor();
-
-//        if (!current_color.equals(Color.WHITE) && !current_color.equals(Color.BLACK))
-//            System.out.println(keyCode + " " + current_color);
-
         if (isHeld) { // If we're sustained
             if (current_color.equals(Color.BLACK)) { // Black background means stop sustaining
                 release();
@@ -31,7 +27,7 @@ public class Point implements Runnable {
             press();
 
             try {
-                Thread.sleep(22);
+                Thread.sleep(22); // We've found that waiting 22ms is the ~optimal wait time before release
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
