@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.logging.Logger;
 
 public class Point implements Runnable{
     private Robot robot; // Handles reading screen and user input
@@ -22,15 +23,18 @@ public class Point implements Runnable{
             if (current_color.equals(Color.BLACK)) { // Black background means stop sustaining
                 release();
                 isHeld = false;
+                System.out.println(keyCode + " End sustain");
             }
         }
         else if (current_color.equals(Constants.NOTE)){  // If we see a single note, hit the key
             press();
             release();
+            System.out.println(keyCode + " Hit key");
         }
         else if (current_color.equals(Constants.NOTE_HOLD)){ // If we see a sustained note, press the key without releasing
             press();
             isHeld = true;
+            System.out.println(keyCode + " Begin sustain");
         }
     }
 
