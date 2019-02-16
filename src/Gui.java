@@ -4,38 +4,59 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class Gui extends Application {
 
-    Button applyButton, startButton, stopButton;
+    private Button applyButton, startButton, stopButton;
+    private HBox row_heading, row_resolution, row_keys, button_row;
+    private Label label_resolution, label_keys;
+    private VBox base, root;
+    private Text scenetitle;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws FileNotFoundException {
         OsuBoost bot = new OsuBoost();
         primaryStage.setTitle(Constants.APP_NAME);
+        base = new VBox();
+        root = new VBox();
+        root.setPadding(new Insets(5, 25, 25, 25));
 
-        VBox root = new VBox();
-        root.setPadding(new Insets(25, 25, 25, 25));
-
-        // Title
-        Text scenetitle = new Text("\t    "+Constants.APP_NAME);
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        root.getChildren().add(scenetitle);
+        // Heading
+        row_heading = new HBox();
+        Image logo = new Image(new FileInputStream("src/logo.png"));
+        Image deco_left = new Image(new FileInputStream("src/heading_left.png"));
+        Image deco_right = new Image(new FileInputStream("src/heading_right.png"));
+        ImageView logoImage = new ImageView(logo);
+        ImageView heading_left = new ImageView(deco_left);
+        ImageView heading_right = new ImageView(deco_right);
+        logoImage.setFitHeight(100);
+        logoImage.setFitWidth(100);
+        heading_left.setFitHeight(100);
+        heading_left.setFitWidth(100);
+        heading_right.setFitHeight(100);
+        heading_right.setFitWidth(100);
+        row_heading.getChildren().addAll(heading_left, logoImage, heading_right);
+        base.getChildren().add(row_heading);
+        base.getChildren().add(root);
 
         // Resolution Label
-        HBox row_resolution = new HBox();
-        Label label_resolution = new Label("Resolution:\t");
+        row_resolution = new HBox();
+        label_resolution = new Label(Constants.RESOLUTION_TEXT);
         label_resolution.setStyle(Constants.BOLD_STYLE);;
         row_resolution.setPadding(new Insets(25, 0, 5, 0));
 
@@ -47,8 +68,8 @@ public class Gui extends Application {
         row_resolution.getChildren().addAll(label_resolution, resolutionComboBox);
 
         // Keys Label
-        HBox row_keys = new HBox();
-        Label label_keys = new Label("\t  Keys:\t");
+        row_keys = new HBox();
+        label_keys = new Label(Constants.KEYS_TEXT);
         label_keys.setStyle(Constants.BOLD_STYLE);
         row_keys.setPadding(new Insets(5, 0, 75, 0));
 
@@ -60,14 +81,14 @@ public class Gui extends Application {
         row_keys.getChildren().addAll(label_keys, keyComboBox);
 
         // Buttons row
-        HBox button_row = new HBox();
-        applyButton = new Button("✔ Apply");
+        button_row = new HBox();
+        applyButton = new Button(Constants.APPLY_TEXT);
         applyButton.setOnMouseClicked((event) -> {
             setDisableButtons(true, false, true);
             bot.apply(Constants.RESOLUTIONS.get(resolutionComboBox.getValue()), Constants.MANIA_KEYS.get(keyComboBox.getValue()));
         });
 
-        startButton = new Button("⏩ Start");
+        startButton = new Button(Constants.START_TEXT);
         startButton.setOnMouseClicked((event) -> {
             setDisableButtons(true, true, false);
             try {
@@ -78,7 +99,7 @@ public class Gui extends Application {
         });
         startButton.setDisable(true);
 
-        stopButton = new Button("■ Stop");
+        stopButton = new Button(Constants.STOP_TEXT);
         stopButton.setOnMouseClicked((event) -> {
             setDisableButtons(true, false, true);
             bot.stop();
@@ -88,11 +109,12 @@ public class Gui extends Application {
         button_row.getChildren().addAll(applyButton, startButton, stopButton);
 
         root.getChildren().addAll(row_resolution, row_keys, button_row);
-        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.setScene(new Scene(base, 300, 300));
+        primaryStage.getIcons().add(new Image("logo.png"));
         primaryStage.show();
     }
 
-    public void setDisableButtons(boolean disableApply, boolean disableStart, boolean disableStop) {
+    private void setDisableButtons(boolean disableApply, boolean disableStart, boolean disableStop) {
         applyButton.setDisable(disableApply);
         startButton.setDisable(disableStart);
         stopButton.setDisable(disableStop);
