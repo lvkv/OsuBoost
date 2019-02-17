@@ -17,7 +17,7 @@ span {
 	color: #FF7EB7;
 }
 
-h2, p, ul, table, button {
+h2, p, ul, table, div {
 	color: white;
 	font-family: "Exo", sans-serif;
 }
@@ -66,7 +66,8 @@ tr:nth-child(even) {
 	background-color: #222222;
 }
 
-button {
+div {
+	margin: auto;
 	margin-bottom: 300px;
 	background-color: #333333;
 	border: none;
@@ -75,7 +76,7 @@ button {
 	height: 50px;
 }
 
-button:hover {
+div:hover {
 	background-color: #666666;
 }
 
