@@ -1,0 +1,92 @@
+body {
+	max-width: 960px;
+	margin: auto;
+	background-image: url("background1.jpg");
+}
+
+h1 {
+	color: white;
+	text-align: center;
+	font-family: "Exo", sans-serif;
+	font-size: 90px;
+	letter-spacing: 5px;
+	text-shadow: 3px 3px black;
+}
+
+span {
+	color: #FF7EB7;
+}
+
+h2, p, ul, table, div {
+	color: white;
+	font-family: "Exo", sans-serif;
+}
+
+p {
+	letter-spacing: 1px;
+	font-size: 20px;
+	line-height: 1.5;
+}
+
+h2 {
+	font-size: 40px;
+	letter-spacing: 2px;
+	text-shadow: 2px 2px #111111;
+}
+
+ul {
+	font-size: 20px;
+	letter-spacing: 1px;
+	list-style-type: none;
+	margin-left: 0px;
+}
+
+li {
+	margin-bottom: 15px;
+}
+
+table {
+	margin: auto;
+	margin-bottom: 50px;
+	margin-top: 50px;
+	font-size: 20px;
+	border-collapse: collapse;
+	background-color: #333333;
+}
+
+th {
+	width: 50%;
+}
+
+th, td {
+	padding: 10px;
+}
+
+tr:nth-child(even) {
+	background-color: #222222;
+}
+
+div {
+	margin: auto;
+	margin-bottom: 300px;
+	background-color: #333333;
+	border: none;
+	color: white;
+	width: 20%;
+	height: 50px;
+}
+
+div:hover {
+	background-color: #666666;
+}
+
+a {
+	color: white;
+	font-size: 32px;
+	text-decoration: none;
+}
+
+@font-face {
+	font-family: Exo;
+	src: url(exo.ttf);
+}

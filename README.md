@@ -12,8 +12,9 @@ Specifically, Osu!Boost uses a specially colored skin to distinguish between nor
 
 ## How to use Osu!Boost
 1. Don't sign in or play ranked maps. You might get banned. Don't be evil.
-2. Use the skin located in `skin/osu!Boost_skin.osk`
-3. Modify your osu! settings to the following:
+2. Go to https://altronis.github.io/OsuBoost/ and download the ZIP file
+3. Use the skin located in `skin/osu!Boost_skin.osk`
+4. Modify your osu! settings to the following:
   
 | Setting | Value |
 | --- | ----------- |
@@ -28,11 +29,11 @@ Specifically, Osu!Boost uses a specially colored skin to distinguish between nor
 | Scale with BPM | Off |
 | (in-game) Scroll speed | 12 |
 
-4. Navigate to the osu!mania song you'd like to play. Alt-tab to Osu!Boost.
+5. Navigate to the osu!mania song you'd like to play. Alt-tab to Osu!Boost.
 
 <img src="media/gui.PNG"/>
 
-5. Modify your Osu!Boost settings (resolution, keys) as needed. Hit apply.
-6. Hit start, then alt-tab back to the game. Start the beatmap and watch the magic happen.
-7. Hit stop when finished.
+6. Modify your Osu!Boost settings (resolution, keys) as needed. Hit apply.
+7. Hit start, then alt-tab back to the game. Start the beatmap and watch the magic happen.
+8. Hit stop when finished.
 
