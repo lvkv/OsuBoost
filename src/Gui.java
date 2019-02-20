@@ -36,9 +36,9 @@ public class Gui extends Application {
 
         // Heading
         row_heading = new HBox();
-        logo = new Image(new FileInputStream("src/logo.png"));
-        deco_left = new Image(new FileInputStream("src/heading_left.png"));
-        deco_right = new Image(new FileInputStream("src/heading_right.png"));
+        logo = new Image(new FileInputStream("logo.png"));
+        deco_left = new Image(new FileInputStream("heading_left.png"));
+        deco_right = new Image(new FileInputStream("heading_right.png"));
         logoImage = new ImageView(logo);
         heading_left = new ImageView(deco_left);
         heading_right = new ImageView(deco_right);
